@@ -17,14 +17,12 @@ const data = {
   ],
   products: [
     {
-      // The ID will come from the MongoDB
       // _id: '1',
       name: 'Nike Slim shirt',
       slug: 'nike-slim-shirt',
       category: 'Shirts',
-      image: '/assets/images/p1.jpg', // 679px × 829px
-
-      price: 120 + 'NIS',
+      image: '/images/p1.jpg', // 679px × 829px
+      price: 120,
       countInStock: 10,
       brand: 'Nike',
       rating: 4.5,
@@ -36,9 +34,9 @@ const data = {
       name: 'Adidas Fit Shirt',
       slug: 'adidas-fit-shirt',
       category: 'Shirts',
-      image: '/assets/images/p2.jpg',
-      price: 250 + 'NIS',
-      countInStock: 20,
+      image: '/images/p2.jpg',
+      price: 250,
+      countInStock: 0,
       brand: 'Adidas',
       rating: 4.0,
       numReviews: 10,
@@ -49,8 +47,8 @@ const data = {
       name: 'Nike Slim Pant',
       slug: 'nike-slim-pant',
       category: 'Pants',
-      image: '/assets/images/p3.jpg',
-      price: 25 + 'NIS',
+      image: '/images/p3.jpg',
+      price: 25,
       countInStock: 15,
       brand: 'Nike',
       rating: 4.5,
@@ -62,8 +60,8 @@ const data = {
       name: 'Adidas Fit Pant',
       slug: 'adidas-fit-pant',
       category: 'Pants',
-      image: '/assets/images/p4.jpg',
-      price: 65 + 'NIS',
+      image: '/images/p4.jpg',
+      price: 65,
       countInStock: 5,
       brand: 'Puma',
       rating: 4.5,

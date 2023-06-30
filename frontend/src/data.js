@@ -1,10 +1,28 @@
+import bcrypt from 'bcryptjs';
+
 const data = {
+  users: [
+    {
+      name: 'Hodaya',
+      email: 'admin@example.com',
+      password: bcrypt.hashSync('123456'),
+      isAdmin: true,
+    },
+    {
+      name: 'Angela',
+      email: 'user@example.com',
+      password: bcrypt.hashSync('123456'),
+      isAdmin: false,
+    },
+  ],
   products: [
     {
+      // The ID will come from the MongoDB
+      // _id: '1',
       name: 'Nike Slim shirt',
       slug: 'nike-slim-shirt',
       category: 'Shirts',
-      image: '/assets/images/p1.jpg', // 679px × 829px
+      image: '/assets/images/p1.jpg',
 
       price: 120 + 'NIS',
       countInStock: 10,
@@ -14,6 +32,7 @@ const data = {
       description: 'high quality shirt',
     },
     {
+      // _id: '2',
       name: 'Adidas Fit Shirt',
       slug: 'adidas-fit-shirt',
       category: 'Shirts',
@@ -26,6 +45,7 @@ const data = {
       description: 'high quality product',
     },
     {
+      // _id: '3',
       name: 'Nike Slim Pant',
       slug: 'nike-slim-pant',
       category: 'Pants',
@@ -38,6 +58,7 @@ const data = {
       description: 'high quality product',
     },
     {
+      // _id: '4',
       name: 'Adidas Fit Pant',
       slug: 'adidas-fit-pant',
       category: 'Pants',

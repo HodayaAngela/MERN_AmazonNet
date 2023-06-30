@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useReducer } from 'react';
-import CheckOutSteps from './CheckOutSteps';
+import CheckOutSteps from '../components/CheckOutSteps';
 import { Helmet } from 'react-helmet-async';
 import Row from 'react-bootstrap/esm/Row';
 import Col from 'react-bootstrap/esm/Col';
@@ -12,6 +12,7 @@ import Button from 'react-bootstrap/esm/Button';
 import axios from 'axios';
 import { getError } from '../utils';
 import { toast } from 'react-toastify';
+import LoadingBox from '../components/LoadingBox';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -28,9 +29,8 @@ const reducer = (state, action) => {
 
 const PlaceOrder = () => {
   const navigate = useNavigate();
-  const [{ loading, error }, dispatch] = useReducer(reducer, {
+  const [{ loading }, dispatch] = useReducer(reducer, {
     loading: false,
-    error: '',
   });
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart, userInfo } = state;
@@ -42,6 +42,7 @@ const PlaceOrder = () => {
   cart.shippingPrice = cart.itemsPrice > 100 ? round2(0) : round2(10);
   cart.taxPrice = round2(0.15 * cart.itemsPrice);
   cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
+
   const placeOrderHandler = async () => {
     try {
       dispatch({ type: 'CREATE_REQUEST' });
@@ -182,6 +183,7 @@ const PlaceOrder = () => {
                       Place Order
                     </Button>
                   </div>
+                  {loading && <LoadingBox />}
                 </ListGroup.Item>
               </ListGroup>
             </Card.Body>

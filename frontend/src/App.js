@@ -23,6 +23,7 @@ import axios from 'axios';
 import { getError } from './utils';
 import Button from 'react-bootstrap/esm/Button';
 import SearchBox from './components/SearchBox';
+import Search from './screens/Search';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -138,6 +139,7 @@ function App() {
             <Routes>
               <Route path="/product/:slug" element={<Product />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/search" element={<Search />} />
               <Route path="/signIn" element={<SignIn />} />
               <Route path="/signUp" element={<SignUp />} />
               <Route path="/profile" element={<Profile />} />

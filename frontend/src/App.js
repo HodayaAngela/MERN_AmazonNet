@@ -12,13 +12,14 @@ import Cart from './screens/Cart';
 import SignIn from './screens/SignIn';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import ShippingAddress from './screens/ShippingAddress';
 import SignUp from './screens/SignUp';
 import PaymentMethod from './screens/PaymentMethod';
 import PlaceOrder from './screens/PlaceOrder';
 import Order from './screens/Order';
 import OrderHistory from './screens/OrderHistory';
-import Profile from './screens/Prifile';
+import Profile from './screens/Profile';
 import axios from 'axios';
 import { getError } from './utils';
 import Button from 'react-bootstrap/esm/Button';
@@ -26,13 +27,20 @@ import SearchBox from './components/SearchBox';
 import Search from './screens/Search';
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminRoute from './components/AdminRoute';
-import Dashboard from './screens/Dashboard';
 import ProductList from './screens/ProductList';
 import ProductEdit from './screens/ProductEdit';
+import Dashboard from './screens/Dashboard';
+import Footer from './components/Footer';
+import OrderList from './screens/OrderList';
+import UserList from './screens/UserList';
+import UserEdit from './screens/UserEdit';
+import PageNotFound from './screens/PageNotFound';
+// import Map from './screens/Map';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart, userInfo } = state;
+
   const signOutHandler = () => {
     ctxDispatch({ type: 'USER_SIGNOUT' });
     localStorage.removeItem('userInfo');
@@ -40,7 +48,6 @@ function App() {
     localStorage.removeItem('paymentMethod');
     window.location.href = '/signIn';
   };
-
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const [categories, setCategories] = useState([]);
 
@@ -55,6 +62,7 @@ function App() {
     };
     fetchCategories();
   }, []);
+
   return (
     <BrowserRouter>
       <div
@@ -94,7 +102,7 @@ function App() {
                       <LinkContainer to="/profile">
                         <NavDropdown.Item>User Profile</NavDropdown.Item>
                       </LinkContainer>
-                      <LinkContainer to="/orderHistory">
+                      <LinkContainer to="/orderhistory">
                         <NavDropdown.Item>Order History</NavDropdown.Item>
                       </LinkContainer>
                       <NavDropdown.Divider />
@@ -146,7 +154,10 @@ function App() {
             {categories.map((category) => (
               <Nav.Item key={category}>
                 <LinkContainer
-                  to={`/search/category=${category}`}
+                  to={{
+                    pathname: '/search',
+                    search: `?category=${category}`,
+                  }}
                   onClick={() => setSidebarIsOpen(false)}
                 >
                   <Nav.Link>{category}</Nav.Link>
@@ -163,7 +174,6 @@ function App() {
               <Route path="/search" element={<Search />} />
               <Route path="/signIn" element={<SignIn />} />
               <Route path="/signUp" element={<SignUp />} />
-
               <Route
                 path="/profile"
                 element={
@@ -172,8 +182,7 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-
-              <Route path="/placeOrder" element={<PlaceOrder />} />
+              <Route path="/placeorder" element={<PlaceOrder />} />
               <Route
                 path="/order/:id"
                 element={
@@ -181,24 +190,39 @@ function App() {
                     <Order />
                   </ProtectedRoute>
                 }
-              />
+              ></Route>
               <Route
-                path="/orderHistory"
+                path="/orderhistory"
                 element={
                   <ProtectedRoute>
                     <OrderHistory />
                   </ProtectedRoute>
                 }
-              />
-              <Route path="/shipping" element={<ShippingAddress />} />
-              <Route path="/payment" element={<PaymentMethod />} />
-
+              ></Route>
+              <Route path="/shipping" element={<ShippingAddress />}></Route>
+              <Route path="/payment" element={<PaymentMethod />}></Route>
               {/* Admin Routes */}
               <Route
                 path="/admin/dashboard"
                 element={
                   <AdminRoute>
                     <Dashboard />
+                  </AdminRoute>
+                }
+              ></Route>
+              <Route
+                path="/admin/orders"
+                element={
+                  <AdminRoute>
+                    <OrderList />
+                  </AdminRoute>
+                }
+              ></Route>
+              <Route
+                path="/admin/users"
+                element={
+                  <AdminRoute>
+                    <UserList />
                   </AdminRoute>
                 }
               ></Route>
@@ -218,15 +242,21 @@ function App() {
                   </AdminRoute>
                 }
               ></Route>
+              <Route
+                path="/admin/user/:id"
+                element={
+                  <AdminRoute>
+                    <UserEdit />
+                  </AdminRoute>
+                }
+              ></Route>
+
               <Route path="/" element={<Home />} />
+              <Route path="*" element={<PageNotFound />} />
             </Routes>
           </Container>
         </main>
-        <footer>
-          <div className="text-center">
-            All rights reserved &copy; Hodaya Angela Dabakarov 2023
-          </div>
-        </footer>
+        <Footer />
       </div>
     </BrowserRouter>
   );

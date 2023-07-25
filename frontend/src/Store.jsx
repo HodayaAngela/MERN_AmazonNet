@@ -10,6 +10,7 @@ const initialState = {
     shippingAddress: localStorage.getItem('shippingAddress')
       ? JSON.parse(localStorage.getItem('shippingAddress'))
       : {},
+
     paymentMethod: localStorage.getItem('paymentMethod')
       ? localStorage.getItem('paymentMethod')
       : '',
@@ -70,6 +71,7 @@ function reducer(state, action) {
           shippingAddress: action.payload,
         },
       };
+
     case 'SAVE_PAYMENT_METHOD':
       return {
         ...state,

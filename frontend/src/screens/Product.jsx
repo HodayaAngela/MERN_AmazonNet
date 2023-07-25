@@ -29,7 +29,7 @@ const reducer = (state, action) => {
 
 // Product Details
 const Product = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { slug } = useParams();
   const [{ loading, error, product }, dispatch] = useReducer(reducer, {
     product: [],
@@ -53,19 +53,19 @@ const Product = () => {
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart } = state;
-  const addToChartHandler = async () => {
+  const addToCartHandler = async () => {
     const existItem = cart.cartItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
-    const { data } = await axios.get(`/${product._id}`);
+    const { data } = await axios.get(`/api/products/${product._id}`);
     if (data.countInStock < quantity) {
-      window.alert('Sorry product is out of stock');
+      window.alert('Sorry. Product is out of stock');
       return;
     }
     ctxDispatch({
       type: 'CART_ADD_ITEM',
       payload: { ...product, quantity },
     });
-    navigate('/cart');
+    // navigate('/cart');
   };
 
   return loading ? (
@@ -124,7 +124,7 @@ const Product = () => {
                 {product.countInStock > 0 && (
                   <ListGroup.Item>
                     <div className="d-grid">
-                      <Button onClick={addToChartHandler} variant="primary">
+                      <Button onClick={addToCartHandler} variant="primary">
                         Add to Cart
                       </Button>
                     </div>

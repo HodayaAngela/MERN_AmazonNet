@@ -21,7 +21,6 @@ const SignIn = () => {
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
-
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
@@ -30,11 +29,10 @@ const SignIn = () => {
         password,
       });
       ctxDispatch({ type: 'USER_SIGNIN', payload: data });
-      // console.log(data);
       localStorage.setItem('userInfo', JSON.stringify(data));
       navigate(redirect || '/');
-    } catch (error) {
-      toast.error(getError(error));
+    } catch (err) {
+      toast.error(getError(err));
     }
   };
 

@@ -50,6 +50,7 @@ const Dashboard = () => {
     };
     fetchData();
   }, [userInfo]);
+
   return (
     <div>
       <h1>Dashboard</h1>

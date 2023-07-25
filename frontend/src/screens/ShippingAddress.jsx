@@ -41,7 +41,13 @@ const ShippingAddress = () => {
     });
     localStorage.setItem(
       'shippingAddress',
-      JSON.stringify({ fullName, address, city, postalCode, country })
+      JSON.stringify({
+        fullName,
+        address,
+        city,
+        postalCode,
+        country,
+      })
     );
     navigate('/payment');
   };
@@ -95,6 +101,7 @@ const ShippingAddress = () => {
               required
             />
           </Form.Group>
+
           <div className="mb-3">
             <Button variant="primary" type="submit">
               Continue

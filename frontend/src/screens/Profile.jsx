@@ -20,8 +20,7 @@ const reducer = (state, action) => {
       return state;
   }
 };
-
-const Prifile = () => {
+const Profile = () => {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
   const [name, setName] = useState(userInfo.name);
@@ -106,4 +105,4 @@ const Prifile = () => {
   );
 };
 
-export default Prifile;
+export default Profile;

@@ -5,7 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import { LinkContainer } from 'react-router-bootstrap';
 import Nav from 'react-bootstrap/Nav';
-import Badge from 'react-bootstrap/esm/Badge';
+import Badge from 'react-bootstrap/Badge';
 import { useContext, useEffect, useState } from 'react';
 import { Store } from './Store';
 import Cart from './screens/Cart';
@@ -22,7 +22,7 @@ import OrderHistory from './screens/OrderHistory';
 import Profile from './screens/Profile';
 import axios from 'axios';
 import { getError } from './utils';
-import Button from 'react-bootstrap/esm/Button';
+import Button from 'react-bootstrap/Button';
 import SearchBox from './components/SearchBox';
 import Search from './screens/Search';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -35,7 +35,9 @@ import OrderList from './screens/OrderList';
 import UserList from './screens/UserList';
 import UserEdit from './screens/UserEdit';
 import PageNotFound from './screens/PageNotFound';
-// import Map from './screens/Map';
+import ForgetPassword from './screens/ForgetPassword';
+import ResetPassword from './screens/ResetPassword';
+import { FaCartPlus } from 'react-icons/fa';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -90,7 +92,7 @@ function App() {
                 <SearchBox />
                 <Nav className="me-auto  w-100  justify-content-end">
                   <Link to="/cart" className="nav-link">
-                    Cart
+                    <FaCartPlus />
                     {cart.cartItems.length > 0 && (
                       <Badge pill bg="danger">
                         {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
@@ -174,6 +176,11 @@ function App() {
               <Route path="/search" element={<Search />} />
               <Route path="/signIn" element={<SignIn />} />
               <Route path="/signUp" element={<SignUp />} />
+              <Route path="/forget-password" element={<ForgetPassword />} />
+              <Route
+                path="/reset-password/:token"
+                element={<ResetPassword />}
+              />
               <Route
                 path="/profile"
                 element={

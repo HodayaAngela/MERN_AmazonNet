@@ -72,6 +72,9 @@ const SignIn = () => {
           New Customer?
           <Link to={`/signUp?redirect=${redirect}`}>Create your account</Link>
         </div>
+        <div className="mb-3">
+          Forget Password? <Link to={`/forget-password`}>Reset Password</Link>
+        </div>
       </Form>
     </Container>
   );

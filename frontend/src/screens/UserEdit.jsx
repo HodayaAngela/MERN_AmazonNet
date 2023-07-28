@@ -1,14 +1,15 @@
 import React, { useContext, useEffect, useReducer, useState } from 'react';
 import { Store } from '../Store';
-import { Form, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { getError } from '../utils';
 import { toast } from 'react-toastify';
-import Container from 'react-bootstrap/esm/Container';
+import Container from 'react-bootstrap/Container';
 import { Helmet } from 'react-helmet-async';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-import Button from 'react-bootstrap/esm/Button';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 const reducer = (state, action) => {
   switch (action.type) {

@@ -6,7 +6,7 @@ import { getError } from '../utils';
 import { Helmet } from 'react-helmet-async';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-import Button from 'react-bootstrap/esm/Button';
+import Button from 'react-bootstrap/Button';
 import { toast } from 'react-toastify';
 
 const reducer = (state, action) => {
@@ -137,7 +137,7 @@ const OrderList = () => {
                   &nbsp;
                   <Button
                     type="button"
-                    variant="light"
+                    variant="outline-danger"
                     onClick={() => deleteHandler(order)}
                   >
                     Delete

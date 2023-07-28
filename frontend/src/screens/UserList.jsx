@@ -8,6 +8,7 @@ import MessageBox from '../components/MessageBox';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import { toast } from 'react-toastify';
+import Table from 'react-bootstrap/Table';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -102,7 +103,14 @@ const UserList = () => {
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
-        <table className="table">
+        <Table
+          className="table"
+          responsive="sm"
+          striped
+          bordered
+          hover
+          variant="light"
+        >
           <thead>
             <tr>
               <th>ID</th>
@@ -122,7 +130,7 @@ const UserList = () => {
                 <td>
                   <Button
                     type="button"
-                    variant="light"
+                    variant="outline-info"
                     onClick={() => navigate(`/admin/user/${user._id}`)}
                   >
                     Edit
@@ -130,7 +138,7 @@ const UserList = () => {
                   &nbsp;
                   <Button
                     type="button"
-                    variant="light"
+                    variant="outline-danger"
                     onClick={() => deleteHandler(user)}
                   >
                     Delete
@@ -139,7 +147,7 @@ const UserList = () => {
               </tr>
             ))}
           </tbody>
-        </table>
+        </Table>
       )}
     </div>
   );

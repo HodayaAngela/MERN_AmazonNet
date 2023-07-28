@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useReducer } from 'react';
 import CheckOutSteps from '../components/CheckOutSteps';
 import { Helmet } from 'react-helmet-async';
-import Row from 'react-bootstrap/esm/Row';
-import Col from 'react-bootstrap/esm/Col';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import { Store } from '../Store';
 import { Link, useNavigate } from 'react-router-dom';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/esm/ListGroupItem';
-import Button from 'react-bootstrap/esm/Button';
+import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import { getError } from '../utils';
 import { toast } from 'react-toastify';

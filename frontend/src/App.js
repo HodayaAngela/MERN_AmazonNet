@@ -37,7 +37,7 @@ import UserEdit from './screens/UserEdit';
 import PageNotFound from './screens/PageNotFound';
 import ForgetPassword from './screens/ForgetPassword';
 import ResetPassword from './screens/ResetPassword';
-import { FaCartPlus } from 'react-icons/fa';
+import { FaShoppingCart } from 'react-icons/fa';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -92,7 +92,7 @@ function App() {
                 <SearchBox />
                 <Nav className="me-auto  w-100  justify-content-end">
                   <Link to="/cart" className="nav-link">
-                    <FaCartPlus />
+                    <FaShoppingCart />
                     {cart.cartItems.length > 0 && (
                       <Badge pill bg="danger">
                         {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}

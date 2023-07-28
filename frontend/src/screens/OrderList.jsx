@@ -8,6 +8,7 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import Button from 'react-bootstrap/Button';
 import { toast } from 'react-toastify';
+import Table from 'react-bootstrap/Table';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -99,7 +100,14 @@ const OrderList = () => {
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
-        <table className="table">
+        <Table
+          className="table"
+          striped
+          bordered
+          hover
+          size="sm"
+          responsive="sm"
+        >
           <thead>
             <tr>
               <th>ID</th>
@@ -146,7 +154,7 @@ const OrderList = () => {
               </tr>
             ))}
           </tbody>
-        </table>
+        </Table>
       )}
     </div>
   );

@@ -7,6 +7,8 @@ import { getError } from '../utils';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Store } from '../Store';
+import Table from 'react-bootstrap/Table';
+import { TiInfoLargeOutline } from 'react-icons/ti';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -61,7 +63,7 @@ const OrderHistory = () => {
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
-        <table className="table">
+        <Table striped bordered hover className="table" responsive="sm">
           <thead>
             <tr>
               <th>ID</th>
@@ -87,18 +89,18 @@ const OrderHistory = () => {
                 <td>
                   <Button
                     type="button"
-                    variant="light"
+                    variant="outline-info"
                     onClick={() => {
                       navigate(`/order/${order._id}`);
                     }}
                   >
-                    Details
+                    <TiInfoLargeOutline />
                   </Button>
                 </td>
               </tr>
             ))}
           </tbody>
-        </table>
+        </Table>
       )}
     </div>
   );

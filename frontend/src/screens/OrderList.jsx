@@ -94,20 +94,12 @@ const OrderList = () => {
         <title>Orders</title>
       </Helmet>
       <h1>Orders</h1>
-      {loadingDelete && <LoadingBox></LoadingBox>}
       {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
-        <Table
-          className="table"
-          striped
-          bordered
-          hover
-          size="sm"
-          responsive="sm"
-        >
+        <table className="table">
           <thead>
             <tr>
               <th>ID</th>
@@ -126,7 +118,8 @@ const OrderList = () => {
                 <td>{order.user ? order.user.name : 'DELETED USER'}</td>
                 <td>{order.createdAt.substring(0, 10)}</td>
                 <td>{order.totalPrice.toFixed(2)}</td>
-                <td>{order.isPaid ? order.paidAt.substring(0, 10) : 'No'}</td>+
+                <td>{order.isPaid ? order.paidAt.substring(0, 10) : 'No'}</td>
+                <td>{order.isPaid ? order.paidAt.substring(0, 10) : 'No'}</td>
                 <td>
                   {order.isDelivered
                     ? order.deliveredAt.substring(0, 10)
@@ -142,19 +135,11 @@ const OrderList = () => {
                   >
                     Details
                   </Button>
-                  &nbsp;
-                  <Button
-                    type="button"
-                    variant="outline-danger"
-                    onClick={() => deleteHandler(order)}
-                  >
-                    Delete
-                  </Button>
                 </td>
               </tr>
             ))}
           </tbody>
-        </Table>
+        </table>
       )}
     </div>
   );

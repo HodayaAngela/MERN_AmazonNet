@@ -49,6 +49,7 @@ const OrderList = () => {
       loading: true,
       error: '',
     });
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -88,6 +89,7 @@ const OrderList = () => {
       }
     }
   };
+
   return (
     <div>
       <Helmet>
@@ -119,7 +121,6 @@ const OrderList = () => {
                 <td>{order.createdAt.substring(0, 10)}</td>
                 <td>{order.totalPrice.toFixed(2)}</td>
                 <td>{order.isPaid ? order.paidAt.substring(0, 10) : 'No'}</td>
-                <td>{order.isPaid ? order.paidAt.substring(0, 10) : 'No'}</td>
                 <td>
                   {order.isDelivered
                     ? order.deliveredAt.substring(0, 10)
@@ -128,12 +129,20 @@ const OrderList = () => {
                 <td>
                   <Button
                     type="button"
-                    variant="light"
+                    variant="outline-info"
                     onClick={() => {
                       navigate(`/order/${order._id}`);
                     }}
                   >
                     Details
+                  </Button>
+                  &nbsp;
+                  <Button
+                    type="button"
+                    variant="outline-danger"
+                    onClick={() => deleteHandler(order)}
+                  >
+                    Delete
                   </Button>
                 </td>
               </tr>

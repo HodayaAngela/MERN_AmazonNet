@@ -1,9 +1,10 @@
 import express from 'express';
 import User from '../models/userModel.js';
 import bcrypt from 'bcryptjs';
-import { generateToken, isAdmin, isAuth } from '../utils.js';
+import { generateToken, isAdmin, isAuth, baseUrl } from '../utils.js';
 import expressAsyncHandler from 'express-async-handler';
 import jwt from 'jsonwebtoken';
+import nodemailer from 'nodemailer';
 
 const userRouter = express.Router();
 
@@ -56,44 +57,58 @@ userRouter.put(
   })
 );
 
-// userRouter.post(
-//   '/forget-password',
-//   expressAsyncHandler(async (req, res) => {
-//     const user = await User.findOne({ email: req.body.email });
+userRouter.post(
+  '/forget-password',
+  expressAsyncHandler(async (req, res) => {
+    // 1. Get user based on posted email
+    const user = await User.findOne({ email: req.body.email });
+    // 2. Generate a random reset token
+    if (user) {
+      const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+        expiresIn: '3h',
+      });
+      user.resetToken = token;
+      await user.save();
 
-//     if (user) {
-//       const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
-//         expiresIn: '3h',
-//       });
-//       user.resetToken = token;
-//       await user.save();
+      //reset link
+      const resetLink = `${baseUrl()}/reset-password/${token}`;
+      console.log(resetLink);
 
-//       //reset link
-//       console.log(`${()}/reset-password/${token}`);
+      // 3. Send the token back to the user email
 
-//       mailgun()
-//         .messages()
-//         .send(
-//           {
-//             from: 'AmazoNet <me@mg.yourdomain.com>',
-//             to: `${user.name} <${user.email}>`,
-//             subject: `Reset Password`,
-//             html: `
-//              <p>Please Click the following link to reset your password:</p>
-//              <a href="${baseUrl()}/reset-password/${token}"}>Reset Password</a>
-//              `,
-//           },
-//           (error, body) => {
-//             console.log(error);
-//             console.log(body);
-//           }
-//         );
-//       res.send({ message: 'We sent reset password link to your email.' });
-//     } else {
-//       res.status(404).send({ message: 'User not found' });
-//     }
-//   })
-// );
+      // Sending email using Nodemailer
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASSWORD,
+        },
+      });
+
+      const mailOptions = {
+        from: 'AmazoNet <Hodaya.da11@gmail.com>',
+        to: `${user.name} <${user.email}>`,
+        subject: 'Reset Password',
+        html: `
+          <p>Please click the following link to reset your password:</p>
+          <a href="${resetLink}">Reset Password</a>
+        `,
+      };
+
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+
+      res.send({ message: 'We sent a reset password link to your email.' });
+    } else {
+      res.status(404).send({ message: 'User not found' });
+    }
+  })
+);
 
 userRouter.post(
   '/reset-password',
@@ -179,6 +194,10 @@ userRouter.post(
 userRouter.post(
   '/signUp',
   expressAsyncHandler(async (req, res) => {
+    const userExist = await User.findOne({ email: req.body.email });
+    if (userExist) {
+      throw new Error('Email already exist');
+    }
     const newUser = new User({
       name: req.body.name,
       email: req.body.email,

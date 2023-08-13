@@ -29,6 +29,8 @@ The Online Shopping Site offers a seamless online shopping experience using the 
 - bcryptjs: 2.4.3
 - express-async-handler: 1.2.0
 - jsonwebtoken: 9.0.0
+- nodemailer: 6.9.4
+- joi: 17.9.2
 
 ### server side
 

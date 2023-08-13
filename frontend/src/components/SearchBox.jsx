@@ -14,20 +14,20 @@ const SearchBox = () => {
     navigate(query ? `/search/?query=${query}` : '/search');
   };
   return (
-    <Form className="d-flex me-auto " onSubmit={submitHandler}>
+    <Form className="d-flex col-md-8 mx-auto " onSubmit={submitHandler}>
       <InputGroup>
+        <Button variant="outline-primary" type="submit" id="button-search">
+          <i className="fas fa-search"></i>
+        </Button>
         <FormControl
           type="text"
           name="q"
           id="q"
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="search products..."
+          placeholder="search "
           aria-label="Search Products"
           aria-describedby="button-search"
         ></FormControl>
-        <Button variant="outline-primary" type="submit" id="button-search">
-          <i className="fas fa-search"></i>
-        </Button>
       </InputGroup>
     </Form>
   );

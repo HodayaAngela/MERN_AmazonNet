@@ -37,7 +37,7 @@ const ResetPassword = () => {
         password,
         token,
       });
-      navigate('/signIn');
+      navigate('/signin');
       toast.success('Password updated successfully');
     } catch (err) {
       toast.error(getError(err));

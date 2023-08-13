@@ -123,7 +123,7 @@ const Product = () => {
                 </ListGroup.Item>
                 {product.countInStock > 0 && (
                   <ListGroup.Item>
-                    <div className="d-grid">
+                    <div className="d-grid ">
                       <Button onClick={addToCartHandler} variant="primary">
                         Add to Cart
                       </Button>

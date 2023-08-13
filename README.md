@@ -42,11 +42,7 @@ The Online Shopping Site offers a seamless online shopping experience using the 
 
 2. Setup MongoDB:
 
-- For local MongoDB, update the following line in the '.env' file: MONGODB_URI="mongodb://localhost:27017/AmazoNet"
-- For Atlas Cloud MongoDB:
-- Open a new database on MongoDB Atlas.
-- Alternatively, for validation, I have provided a separate link to an existing MongoDB Atlas. Please update the .env file with the provided link.
-  Replace the current value of MONGODB_URI with the separate link you received for MongoDB Atlas. The updated line
+- I have provided a separate link to an existing MongoDB Atlas. Please update the .env file with the provided link.
 
 3. Run Backend:
 

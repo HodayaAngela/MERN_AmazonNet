@@ -1,4 +1,6 @@
 import React from 'react';
+import { LinkContainer } from 'react-router-bootstrap';
+import Navbar from 'react-bootstrap/Navbar';
 
 const Footer = () => {
   return (
@@ -200,6 +202,18 @@ const Footer = () => {
             className="text-center p-3"
             style={{ backgroundColor: (0, 0, 0, 0.2) }}
           >
+            <LinkContainer className="mx-3" to="/">
+              <Navbar.Brand>
+                {' '}
+                <img
+                  src="/assets/images/ONLINESHOP.jpg"
+                  alt="AmazoNet Logo"
+                  height="30"
+                  className="d-inline-block align-top "
+                />{' '}
+                AmazoNet
+              </Navbar.Brand>
+            </LinkContainer>
             © 2023 Copyright:
             <a className="text-white" href="https://mdbootstrap.com/">
               {''} Hodaya Angela Dabakarov

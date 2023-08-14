@@ -85,7 +85,16 @@ function App() {
                 <i className="fas fa-bars"></i>
               </Button>
               <LinkContainer to="/">
-                <Navbar.Brand>AmazoNet</Navbar.Brand>
+                <Navbar.Brand>
+                  {' '}
+                  <img
+                    src="/assets/images/ONLINESHOP.jpg"
+                    alt="AmazoNet Logo"
+                    height="30"
+                    className="d-inline-block align-top"
+                  />{' '}
+                  AmazoNet
+                </Navbar.Brand>
               </LinkContainer>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">

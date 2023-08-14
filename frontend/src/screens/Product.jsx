@@ -74,7 +74,6 @@ const Product = () => {
     <MessageBox variant="danger">{error}</MessageBox>
   ) : (
     <div>
-      |
       <Row>
         <Col md={6}>
           <img className="img-large" src={product.image} alt={product.name} />

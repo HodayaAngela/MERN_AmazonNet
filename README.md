@@ -6,6 +6,10 @@
 
 The Online Shopping Site offers a seamless online shopping experience using the MERN stack (MongoDB, ExpressJS, React, and Node.js). It provides users with a user-friendly interface, secure payment options, and a diverse selection of products, ensuring convenience, speed, and affordability for all shoppers.
 
+## Demo Website
+
+- Render :[https://amazonet-mern.onrender.com]
+
 ## Technologies
 
 ### client side
